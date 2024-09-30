@@ -1,1 +1,119 @@
+Personal Expense Tracker- Project Sketch
+Description
+The "Personal Expense Tracker" is a simple tool designed to help individuals manage and track their daily expenses. Users can input their spending across different categories (such as food, transportation, entertainment, and utilities), and the tool will provide insights into their spending habits. By visualizing how much is spent in each category, the tool helps users identify areas where they may be overspending. Additionally, users can set monthly budgets for each category, and the tool will alert them when they are nearing or exceeding their budget limit.
 
+Use Case (Vignette)
+A user is trying to better manage their finances and avoid overspending. They open the Personal Expense Tracker and input their daily expenses, categorizing them as groceries, transportation, entertainment, and rent. As the user continues to input data over the month, the tool tracks their spending, providing a pie chart that visually breaks down how their money is distributed across the categories. When the user approaches their monthly budget limit for entertainment, the tool sends an alert, suggesting they cut back on discretionary spending for the rest of the month.
+
+Biggest Implementation Challenge
+The most significant challenge will be handling user inputs over time and ensuring the data is saved and processed correctly. Creating real-time alerts for budget limits and producing visualizations (such as graphs and charts) to display spending trends also requires additional work with data manipulation and visualization libraries.
+
+What Part Can You See Yourself Do, On Your Own or With Some Help?
+As a beginner in Python, I can handle building the user interface for data input, organizing the expense data using Pandas, and creating simple calculations for tracking spending over time. I would need help with implementing the alert system for budget limits and creating more complex visualizations to display spending trends dynamically.
+
+Who Would Be the Users? Are There Secondary Stakeholders?
+The primary users would be individuals looking to manage their personal finances and gain insight into their spending habits. Secondary stakeholders could include financial advisors or budgeting consultants who might use the tool to help their clients monitor and control their expenses.
+What is the Task? What Problem Would It (Help to) Solve?
+The primary task is to track expenses and give users real-time feedback on their spending habits. It helps solve the problem of overspending by giving users a clear picture of where their money is going and allowing them to set budget limits for various categories.
+
+What is Primary Interaction? Is There an Interaction Loop?
+The primary interaction involves the user entering their daily expenses into the tool, and the tool updates the user’s total spending by category. There is an interaction loop where the user continually inputs data, and the system provides feedback on spending trends and budget alerts, encouraging adjustments to spending habits over time.
+
+What Kind of User Interface Might You Use?
+The user interface could be a simple web app built using Flask. The interface would include input fields for entering expenses (amount, category, date) and a dashboard that displays the total spending per category, along with charts and graphs to visualize spending trends.
+
+What Data Would Be Used (Input), How Would You Get It and How Is It Processed/Analyzed?
+The input data would be the user’s daily expenses, including the amount spent, category, and date. The data would be processed and stored in a Pandas Data Frame, which can then be analyzed to calculate total spending per category and generate trends over time. Python’s Matplotlib or Seaborn libraries would be used to create visualizations of the user’s spending patterns.
+
+What Are the Results and How Are They Presented?
+The results include a breakdown of spending by category, visualized through pie charts or bar graphs. The tool would also display alerts if a user was nearing or exceeding their budget limits for any category. All results would be presented in a user-friendly dashboard, allowing the user to track their expenses easily and make informed financial decisions.
+
+
+Personal Expense Tracker - Project Specification
+1. Project Overview
+Description:
+The "Personal Expense Tracker" is a desktop or web-based application designed to help users
+efficiently manage and track their daily expenses across various categories, such as food,
+transportation, entertainment, and utilities. Users can input their expenditures, and the tool
+provides visual insights into their spending habits. Additionally, the app allows users to set
+monthly budgets for each category, alerting them when they approach or exceed these limits.
+The goal is to help users gain better control over their finances by providing them with a clear
+understanding of their spending patterns.
+External Mechanisms:
+● Data Visualization: Python's Matplotlib or Seaborn libraries for generating visual
+insights like pie charts and bar graphs.
+● Database Management: SQLite or Pandas for storing and processing user input data.
+Graphical User Interface (GUI):
+The application would ideally feature a simple web interface built using Flask, where users can
+input their expenses and view summaries. It could also have a desktop interface built with
+Tkinter or run in a command-line interface (CLI) for minimal implementation.
+Remote Control:
+In the future, the application could offer API functionality to allow remote entry of expenses or
+integration with other financial tools.
+2. Task Vignettes (User Activity "Flow")
+Task 1: Inputting Daily Expenses
+Vignette:
+John, a user who is trying to better manage his finances, opens the Personal Expense Tracker
+on his desktop. The main screen displays input fields for the date, amount, and category (e.g.,
+groceries, entertainment). John enters $50 for groceries and $20 for transportation. He clicks
+the "Add Expense" button, and the data is saved. As John continues to enter his expenses
+throughout the week, the app begins to visualize his spending habits.
+Technical Details:
+● User inputs are stored in a Pandas DataFrame or SQLite database.
+● Each entry includes the amount, category, and date.
+● Data is saved locally and displayed in a summary table on the main screen.
+Task 2: Setting and Managing Budgets
+Vignette:
+To avoid overspending, John decides to set a monthly budget of $200 for entertainment. He
+navigates to the "Budgets" section of the app and sets his limit. As the month progresses, John
+enters more entertainment expenses. When he reaches $180, the app alerts him that he is
+nearing his budget limit, suggesting that he may want to reduce his entertainment spending for
+the rest of the month.
+Technical Details:
+● Budget limits are set by the user and stored in the database.
+● The application continuously monitors total spending in each category.
+● Alerts are triggered when spending approaches or exceeds the budget limit.
+Task 3: Visualizing Spending Trends
+Vignette:
+At the end of the month, John wants to review his spending habits. He clicks on the "View
+Reports" button, which generates a pie chart showing how his money was distributed across
+different categories. The chart reveals that most of his spending was on groceries and
+entertainment. Additionally, the app provides a bar graph comparing his spending across the
+last three months, helping John understand his financial trends over time.
+Technical Details:
+● Data visualization is handled using Matplotlib or Seaborn.
+● The app generates visual reports based on user data, including pie charts and bar
+graphs.
+● Users can view visual summaries of their spending for the current month and compare
+them with previous months.
+3. Technical Flow
+Data Flow:
+● Input: User inputs daily expenses, budget limits, and other financial data.
+● Processing:
+○ Data is processed using Pandas for organization and summary generation.
+○ Budget limits are monitored against total spending in real-time.
+● Output: The application generates visual summaries (charts/graphs) and alerts based
+on the processed data.
+Blocks:
+● Expense Input Block:
+○ Manages the entry and storage of daily expenses.
+○ Interfaces with the database for CRUD (Create, Read, Update, Delete)
+operations.
+● Budget Management Block:
+○ Handles budget setting and monitoring.
+○ Triggers alerts when budget limits are reached.
+● Visualization Block:
+○ Creates graphical representations of spending data.
+○ Uses Matplotlib/Seaborn for chart generation.
+● GUI Block:
+○ Displays the input fields, summaries, and visual reports to the user.
+○ Manages user interactions and inputs.
+Data Types:
+● Input Data: Expense entries as dictionaries or DataFrame rows.
+● Processing Data: Summary statistics, budget status as floats/integers.
+● Output Data: Visualizations (graphs/charts), alerts as strings or objects.
+User Interaction:
+● Input: User enters data through forms in the GUI.
+● Output: Visual summaries and alerts are displayed to guide user decisions.
+Link to GitHub Repository:
+https://github.com/niharikaux/Personal-Expense-Tracker/tree/main
