@@ -17,12 +17,20 @@ h2 {
     margin-bottom: 10px;
 }
 
-/* Form Styles */
+/* Layout: Container for Left/Right Split */
+.container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Left Side: Data Entry Form */
 .expense-form {
+    width: 45%;
     background-color: #eef2f5;
     padding: 20px;
     border-radius: 5px;
-    margin-bottom: 20px;
 }
 
 label {
@@ -55,9 +63,9 @@ button:hover {
     background-color: #0056b3;
 }
 
-/* Expense Summary Table */
+/* Right Side: Expense Summary Table */
 .expense-summary {
-    margin-bottom: 20px;
+    width: 50%;
 }
 
 table {
