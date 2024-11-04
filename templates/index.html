@@ -12,9 +12,7 @@
         <h1>Personal Expense Tracker</h1>
     </header>
 
-    <!-- Main container for left/right layout -->
     <div class="container">
-        <!-- Left Section: Data Entry Form -->
         <section class="expense-form">
             <h2>Enter Your Expenses</h2>
             <form action="/add-expense" method="POST">
@@ -36,9 +34,8 @@
                 <button type="submit">Add Expense</button>
             </form>
 
-            <!-- Placeholder for budget setting -->
             <h2>Set Your Budget</h2>
-            <form>
+            <form action="/set-budget" method="POST">
                 <label for="budget-category">Category:</label>
                 <select id="budget-category" name="budget-category" required>
                     <option value="Food">Food</option>
@@ -51,11 +48,10 @@
                 <label for="budget-amount">Budget Amount:</label>
                 <input type="number" id="budget-amount" name="budget-amount" placeholder="Set budget amount" required>
 
-                <button type="submit" disabled>Set Budget (coming soon)</button>
+                <button type="submit">Set Budget</button>
             </form>
         </section>
 
-        <!-- Right Section: Expense Summary Table -->
         <section class="expense-summary">
             <h2>Expense Summary</h2>
             <table>
@@ -64,6 +60,7 @@
                         <th>Date</th>
                         <th>Category</th>
                         <th>Amount</th>
+                        <th>Budget Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -72,6 +69,13 @@
                         <td>{{ expense['date'] }}</td>
                         <td>{{ expense['category'] }}</td>
                         <td>{{ expense['amount'] }}</td>
+                        <td>
+                            {% if expense['category'] in budget_status %}
+                                {{ budget_status[expense['category']] }}
+                            {% else %}
+                                No Budget
+                            {% endif %}
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
