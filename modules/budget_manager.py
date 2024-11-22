@@ -1,12 +1,10 @@
-import os
 import csv
+import os
 
 def get_budget_file(username):
-    """Generate the file name for storing a user's budget data."""
     return f"{username}_budgets.csv"
 
 def set_budget(username, category, budget_amount):
-    """Sets or updates a budget for a specific category in the user's budget CSV file."""
     budget_file = get_budget_file(username)
     budget_data = get_all_budgets(username)
     budget_data[category] = budget_amount
@@ -20,7 +18,6 @@ def set_budget(username, category, budget_amount):
         print(f"Error writing to budget file: {e}")
 
 def get_all_budgets(username):
-    """Retrieves all budgets from the user's budget CSV file and returns them as a dictionary."""
     budget_file = get_budget_file(username)
     budgets = {}
     if not os.path.exists(budget_file):
@@ -40,18 +37,29 @@ def get_all_budgets(username):
     return budgets
 
 def check_budget_status(username, expenses):
-    """Checks if expenses are approaching or exceeding the set budget for each category."""
     budget_data = get_all_budgets(username)
     budget_status = {}
+    category_totals = {}
 
-    for category, budget in budget_data.items():
-        total_spent = sum(exp['amount'] for exp in expenses if exp['category'] == category)
-        
-        if total_spent >= budget:
-            budget_status[category] = "Exceeded"
-        elif total_spent >= 0.8 * budget:
-            budget_status[category] = "Approaching"
+    for expense in expenses:
+        category = expense['category']
+        amount = expense['amount']
+        category_totals[category] = category_totals.get(category, 0) + amount
+
+    for category, total_spent in category_totals.items():
+        if category in budget_data:
+            budget = budget_data[category]
+            if total_spent >= budget:
+                budget_status[category] = "Exceeded"
+            elif total_spent >= 0.8 * budget:
+                budget_status[category] = "Approaching"
+            else:
+                budget_status[category] = "Under Budget"
         else:
+            budget_status[category] = "No Budget Set"
+
+    for category in budget_data:
+        if category not in category_totals:
             budget_status[category] = "Under Budget"
-    
+
     return budget_status
