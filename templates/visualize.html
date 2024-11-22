@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Visualization</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Expense Visualization</h1>
+    </header>
+
+    <main>
+        <div class="visualization-container">
+            <h2>Your Expense Chart</h2>
+            <div class="chart">
+                <img src="{{ chart_path }}" alt="Expense Chart" class="chart-image">
+            </div>
+        </div>
+
+        <!-- Navigation Button -->
+        <div class="cta">
+            <a href="/" class="cta-btn">Back to Dashboard</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>Personal Expense Tracker © 2024</p>
+    </footer>
+</body>
+</html>
