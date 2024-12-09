@@ -159,6 +159,10 @@ b. The **Total Amount Spent** is displayed below the table.
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 895adaded16a8f7b98f2634229a895f31c5a0251
 
 
 
