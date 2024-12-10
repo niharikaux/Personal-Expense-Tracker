@@ -1,37 +1,44 @@
-import csv
-import os
-
-def get_expense_file(username):
-    return f"{username}_expenses.csv"
-
 def add_expense(username, date, category, amount):
-    expense_file = get_expense_file(username)
-    try:
-        with open(expense_file, mode='a', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow([date, category, amount])
-    except IOError as e:
-        print(f"Error writing to file {expense_file}: {e}")
+    """
+    Adds a new expense for the specified user.
+
+    Args:
+        username (str): The user's identifier.
+        date (str): The date of the expense.
+        category (str): The category of the expense.
+        amount (float): The amount of the expense.
+
+    Returns:
+        None
+    """
+    expense_file = f"{username}_expenses.csv"
+
+    # Append the new expense to the user's CSV file
+    with open(expense_file, 'a') as file:
+        file.write(f"{date},{category},{amount}\n")
+
 
 def get_expenses(username):
-    expense_file = get_expense_file(username)
-    expenses = []
-    if not os.path.exists(expense_file):
-        return expenses
+    """
+    Retrieves all expenses for the specified user.
 
-    try:
-        with open(expense_file, mode='r') as file:
-            reader = csv.reader(file)
-            for row in reader:
-                if len(row) == 3:
-                    expenses.append({
-                        'date': row[0],
-                        'category': row[1],
-                        'amount': float(row[2])
-                    })
-    except IOError as e:
-        print(f"Error reading from file {expense_file}: {e}")
-    except ValueError:
-        print("Invalid data format in expenses file.")
-    
+    Args:
+        username (str): The user's identifier.
+
+    Returns:
+        list: A list of expenses as dictionaries.
+    """
+    expense_file = f"{username}_expenses.csv"
+    expenses = []
+
+    # Read the expense file and parse each line into a dictionary
+    with open(expense_file, 'r') as file:
+        for line in file:
+            date, category, amount = line.strip().split(',')
+            expenses.append({
+                'date': date,
+                'category': category,
+                'amount': float(amount)
+            })
+
     return expenses
